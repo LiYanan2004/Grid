@@ -146,6 +146,7 @@ public struct Grid: View, LayoutArranging, LayoutPositioning {
             height: self.positions.totalSize?.height
         )
     }
+    .preference(key: GridSize.self, value: self.positions.totalSize)
     .id(self.isLoaded)
   }
   
@@ -299,4 +300,12 @@ extension View {
     edgeInsets.trailing = spacing.horizontal / 2
     return self.padding(edgeInsets)
   }
+}
+
+public struct GridSize: PreferenceKey {
+    static public var defaultValue: CGSize?
+    
+    static public func reduce(value: inout Value, nextValue: () -> Value) {
+        value = value ?? nextValue()
+    }
 }
