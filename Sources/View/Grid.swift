@@ -125,7 +125,12 @@ public struct Grid: View, LayoutArranging, LayoutPositioning {
         alignment: self.contentAlignment.swiftUIAlignment
       )
       .if(contentMode == .scroll) { content in
-        ScrollView(self.scrollAxis) { content }
+          ScrollView(self.scrollAxis) {
+              content.frame(
+                width: self.positions.totalSize?.width,
+                height: self.positions.totalSize?.height
+              )
+          }
       }
       .onPreferenceChange(GridPreferenceKey.self) { preference in
         self.calculateLayout(
@@ -137,7 +142,7 @@ public struct Grid: View, LayoutArranging, LayoutPositioning {
     }
     .if(contentMode == .contentFit) { content in
         content.frame(
-            idealWidth: self.positions.totalSize?.width
+            height: self.positions.totalSize?.height
         )
     }
     .id(self.isLoaded)
