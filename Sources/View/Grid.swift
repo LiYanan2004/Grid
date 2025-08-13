@@ -142,7 +142,7 @@ public struct Grid: View, LayoutArranging, LayoutPositioning {
     }
     .if(contentMode == .contentFit) { content in
         content.frame(
-            width: self.positions.totalSize?.width
+            height: self.positions.totalSize?.height
         )
     }
     .id(self.isLoaded)
