@@ -127,8 +127,8 @@ public struct Grid: View, LayoutArranging, LayoutPositioning {
       .if(contentMode == .scroll) { content in
           ScrollView(self.scrollAxis) {
               content.frame(
-                width: self.positions.totalSize?.width,
-                height: self.positions.totalSize?.height
+                width: scrollAxis.contains(.horizontal) ? self.positions.totalSize?.width : nil,
+                height: scrollAxis.contains(.vertical) ? self.positions.totalSize?.height : nil
               )
           }
       }
